@@ -5,7 +5,7 @@ import openai
 from mangum import Mangum
 
 openai.organization = "org-7IOSzoKvbgeBrwuhdlXR7JSB"
-openai.api_key = "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"
+openai.api_key = "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"
 
 from fastapi import FastAPI  
 
