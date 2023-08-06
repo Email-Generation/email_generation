@@ -3,13 +3,17 @@ Auto Email Generation
 
 # Run locally
 - FastAPI server for backend
-```
-uvicorn main:app --host 127.0.0.1 --port 8000 --reload
-```
+    ```bash
+    uvicorn main:app --host 127.0.0.1 --port 8000 --reload
+    ```
+
 - Fronted server
-```
-npm start
-```
+    ```bash
+    npm start
+    ```
 Other terminal npm start to start the react server
 
-python-lambda-local -f handler main.py events.json
+# Local Testing of lambda function
+```bash
+python-lambda-local -f handler main.py test-events-lambda/events.json
+```
