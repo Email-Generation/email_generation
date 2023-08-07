@@ -15,5 +15,5 @@ Other terminal npm start to start the react server
 
 # Local Testing of lambda function
 ```bash
-python-lambda-local -f handler main.py test-events-lambda/events.json
+python-lambda-local -f handler backend/app/main.py test-events-lambda/events.json
 ```
