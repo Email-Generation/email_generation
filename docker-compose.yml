@@ -3,20 +3,25 @@ version: '3'
 services:
   backend:
     image: kayvan999/email-generation-backend:latest
-    build: .
+    build: ./backend
+    dockerfile: local.Dockerfile
+    container_name: email-generation-backend
     volumes:
-      - .:/usr/src/app
+      - ./backend:/usr/src/app
     ports:
-      - 8080:8080
+      - 8000:8000
     env_file:
       - .env
-    command: sh -c "uvicorn app.main:app --host 0.0.0.0 --port 8080 --reload"
+    command: sh -c "uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload"
 
   frontend:
     image: kayvan999/email-generation-frontend:latest
-    build: .
+    build: ./frontend
+    dockerfile: local.Dockerfile
+    container_name: email-generation-frontend
     volumes:
-      - .:/usr/src/app
+      - ./frontend:/usr/src/app
+      - /usr/src/app/node_modules
     ports:
       - 3000:3000
     env_file:
