@@ -1,5 +1,9 @@
-fastapi==0.96.0
+fastapi[all]==0.96.0
 openai
 mangum
 uvicorn
 requests
+python-dotenv
+PyYAML>=6.0
+requests
+rich
