@@ -1,0 +1,45 @@
+version: 1
+disable_existing_loggers: False
+
+formatters:
+  standard:
+    format: "%(asctime)s.%(msecs)03d | %(levelname)-7s | %(name)s - %(message)s"
+    datefmt: "%H:%M:%S"
+
+  simple:
+    format: "%(asctime)s | [%(levelname)s]:%(name)s - %(message)s"
+    datefmt: "%Y-%m-%d %H:%M:%S"
+
+  detailed:
+    format:
+      "%(asctime)s | [%(levelname)s]:%(name)s - <%(module)s>:%(lineno)d -
+      %(message)s"
+    datefmt: "%Y-%m-%d %H:%M:%S"
+
+  rich_simple:
+    format: "%(name)s: %(message)s"
+    datefmt: "%Y-%m-%d %H:%M:%S"
+
+handlers:
+  console:
+    class: logging.StreamHandler
+    level: DEBUG
+    formatter: simple
+    stream: ext://sys.stdout
+
+  rich_console:
+    class: rich.logging.RichHandler
+    level: DEBUG
+    formatter: rich_simple
+    rich_tracebacks: True
+
+loggers:
+  email_generation:
+    level: DEBUG
+    handlers: [rich_console]
+    propagate: no
+
+# The root logger: any logger without propagation disabled sends to here as well
+root:
+  level: DEBUG
+  handlers: [rich_console]
