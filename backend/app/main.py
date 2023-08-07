@@ -5,7 +5,26 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import RedirectResponse
 from mangum import Mangum
 
-app = FastAPI(title=settings.title, description=settings.description)
+app = FastAPI(
+    title=settings.title,
+    description=settings.description,
+    version="1.0.0",
+    # terms_of_service="URL to terms of service",
+    contact=[
+        {
+            "name": "Kayvan Shah",
+            # "url": "Contact URL 1",
+            "email": "kayvan.shah@usc.edu",
+        },
+        {
+            "name": "Bhumi Godiwala",
+            # "url": "Contact URL 2",
+            "email": "bhumi.godiwala@usc.edu",
+        },
+    ],
+    # license_info={"name": "BSD 3-Clause License", "url": "License URL"},
+    lifespan=None,
+)
 handler = Mangum(app)
 
 
