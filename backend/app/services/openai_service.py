@@ -32,7 +32,7 @@ def generate_email(email_prompt: str) -> str:
                 detail="Invalid Request",
             )
     except Exception as e:
-        logger.exception(e)
+        logger.error(e)
         raise HTTPException(
             status_code=status.HTTP_404_NOT_FOUND, detail="Out of service"
         )
