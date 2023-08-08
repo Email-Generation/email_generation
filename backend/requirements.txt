@@ -1,0 +1,10 @@
+fastapi[all]==0.96.0
+openai
+mangum
+uvicorn
+requests
+python-dotenv
+PyYAML>=6.0
+python-lambda-local
+requests
+rich
