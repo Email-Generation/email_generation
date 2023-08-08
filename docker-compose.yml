@@ -5,7 +5,7 @@ services:
     image: kayvan999/email-generation-backend:latest
     build: 
       context: ./backend
-      dockerfile: local.Dockerfile
+      dockerfile: Dockerfile.dev
     container_name: email-generation-backend
     volumes:
       - ./backend:/usr/src/app
@@ -19,7 +19,7 @@ services:
     image: kayvan999/email-generation-frontend:latest
     build: 
       context: ./frontend
-      dockerfile: local.Dockerfile
+      dockerfile: Dockerfile.dev
     container_name: email-generation-frontend
     volumes:
       - ./frontend:/usr/src/app
