@@ -21,8 +21,6 @@ services:
       context: ./frontend
       dockerfile: Dockerfile.dev
     container_name: email-generation-frontend
-    volumes:
-      - ./frontend:/usr/src/app
     ports:
       - 3000:3000
     env_file:
