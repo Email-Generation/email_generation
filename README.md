@@ -11,6 +11,7 @@ Auto Email Generation is a project that utilizes FastAPI for the backend and a R
   - [Creating .env File](#creating-env-file)
 - [Deployment](#deployment)
   - [Docker Compose](#docker-compose)
+  - [Build Lambda Docker Image](#build-lambda-docker-image)
 - [Contributing Guidelines](#contributing-guidelines)
 - [License](#license)
 
@@ -83,7 +84,7 @@ Auto Email Generation is a project that utilizes FastAPI for the backend and a R
     Use `python-lambda-local` to test your Lambda function locally. Run the following command:
     ```bash
     cd backend
-    python-lambda-local -f handler app/main.py ../test-events-lambda/events.json
+    python-lambda-local -f handler app/main.py ../test-events-lambda/test_event.json
     ```
 
 ### Creating .env File
@@ -138,6 +139,58 @@ Auto Email Generation is a project that utilizes FastAPI for the backend and a R
      ```bash
      docker-compose down --rmi all
      ```
+### Build Lambda Docker Image
+
+1. **Login to Amazon ECR Registry**:
+
+   Use this command to authenticate Docker to your Amazon Elastic Container Registry (ECR) account for the specified region. Replace `<account-id>` and `<region>` with your actual account ID and region.
+
+   ```bash
+   aws ecr get-login-password --region us-west-1 | docker login --username AWS --password-stdin <account-id>.dkr.ecr.<region>.amazonaws.com/email-gen-lambda:latest
+   ```
+
+   This command fetches an authentication token and logs Docker into your ECR registry.
+
+2. **Get AWS Account Identity**:
+
+   Use this command to verify the AWS account identity you're currently using.
+
+   ```bash
+   aws sts get-caller-identity
+   ```
+
+   This command provides information about your AWS account, such as the account ID, user ID, and ARN.
+
+3. **Build Docker Image for Lambda**:
+
+   Navigate to the `backend` directory and build the Docker image for your Lambda function using the specified Dockerfile.
+
+   ```bash
+   cd backend
+   docker build -t email-gen-lambda ./ -f ./Dockerfile.lambda.dev
+   ```
+
+   This command builds the Docker image based on the specified Dockerfile (`Dockerfile.lambda.dev`) in the `backend` directory.
+
+4. **Tag Docker Image**:
+
+   After building the Docker image, tag it with the ECR repository's URI.
+
+   ```bash
+   docker tag email-gen-lambda:latest <account-id>.dkr.ecr.<region>.amazonaws.com/email-gen-lambda:latest
+   ```
+
+   This command assigns a new tag to the Docker image, indicating the ECR repository location.
+
+5. **Push Docker Image to ECR**:
+
+   Push the tagged Docker image to your ECR repository.
+
+   ```bash
+   docker push <account-id>.dkr.ecr.<region>.amazonaws.com/email-gen-lambda:latest
+   ```
+
+   This command uploads the Docker image to your ECR repository for future use.
 
 ## Contributing Guidelines
 
