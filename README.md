@@ -110,12 +110,16 @@ Auto Email Generation is a project that utilizes FastAPI for the backend and a R
 
 ### Docker Compose
 
-1. **Start Containers**:
+1. **Build/Start Containers**:
    - Open a terminal in your project's root directory.
    - Run the following command to build and start the containers defined in the `docker-compose.yml` file:
      ```bash
      docker-compose up
      ```
+   - To build image and container from scratch, use the following command:
+      ``` bash
+      docker-compose up --build
+      ```
    - This command will start both the backend and frontend containers, pulling necessary images if they don't exist locally.
 
 2. **Access Frontend and Backend**:
@@ -132,7 +136,7 @@ Auto Email Generation is a project that utilizes FastAPI for the backend and a R
 5. **Cleaning Up**:
    - To stop and remove the containers, as well as their associated networks and volumes, run:
      ```bash
-     docker-compose down
+     docker-compose down --rmi all
      ```
 
 ## Contributing Guidelines
