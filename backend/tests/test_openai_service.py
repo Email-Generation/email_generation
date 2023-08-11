@@ -8,9 +8,7 @@ def test_openai_authentication():
     openai.api_key = settings.OPENAI_API_KEY
 
     # Perform a test API request to check if authentication works
-    response = openai.Completion.create(
-        engine="davinci", prompt="This is a test prompt.", max_tokens=5
-    )
+    response = openai.Completion.create(engine="davinci", prompt="This is a test prompt.", max_tokens=5)
 
     assert response["object"] == "text_completion"
 

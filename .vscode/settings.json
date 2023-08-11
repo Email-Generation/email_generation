@@ -3,5 +3,5 @@
         "editor.defaultFormatter": "ms-python.black-formatter"
     },
     "python.formatting.provider": "none",
-    "black-formatter.args":["--experimental-string-processing"]
+    "black-formatter.args":["--preview","--line-length=120"]
 }
