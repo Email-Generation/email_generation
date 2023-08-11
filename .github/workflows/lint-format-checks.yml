@@ -55,7 +55,7 @@ jobs:
         run: pip install -r dev-requirements.txt
 
       - name: Lint with Flake8
-        run: flake8 .*py --max-line-length=120 --ignore=E402,F841,F401,E302,E305,E266,E203,W503
+        run: flake8 *.py --max-line-length=120 --ignore=E402,F841,F401,E302,E305,E266,E203,W503
 
       - name: Format with Black
-        run: black .*py --check --experimental-string-processing --line-length=120
+        run: black *.py --check --experimental-string-processing --line-length=120
