@@ -1,9 +1,6 @@
 name: Test Email Generation backend
 
 on:
-  push:
-    branches:
-      - main
   pull_request:
     branches:
       - main
