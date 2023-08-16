@@ -6,9 +6,9 @@ Auto Email Generation is a project that utilizes FastAPI for the backend and a R
 - [Directory Structure](#directory-structure)
 - [Setup and Usage](#setup-and-usage)
   - [Setting Up Environments](#setting-up-environments)
+  - [Creating .env File](#creating-env-file)
   - [Running Locally](#running-locally)
   - [Local Testing of Lambda Function](#local-testing-of-lambda-function)
-  - [Creating .env File](#creating-env-file)
 - [Deployment](#deployment)
   - [Docker Compose](#docker-compose)
   - [Build Lambda Docker Image](#build-lambda-docker-image)
@@ -62,6 +62,26 @@ Auto Email Generation is a project that utilizes FastAPI for the backend and a R
       pip install -r requirements.txt
       ```
 
+### Creating .env File
+
+- Setting up the environment variables
+    1. Navigate to the root directory of your project.
+    2. Create a new file named `.env` in the root directory.
+
+    Inside the `.env` file, add the following lines with your actual values for the environment variables:
+
+    ```dotenv
+    OPENAI_ORGANIZATION=your-organization-id
+    OPENAI_API_KEY=your-api-key
+    ```
+
+    Replace `your-organization-id` with your actual OpenAI organization ID and `your-api-key` with your actual OpenAI API key.
+
+    Make sure not to include any quotes around the values. The `.env` file is used to store sensitive information, so keep it private and do not share it publicly.
+
+- Further Configuration:
+    Adjust any other configurations as necessary in the respective files and directories.
+
 ### Running Locally
 
 1. **Start FastAPI Server (Backend):**
@@ -86,26 +106,6 @@ Auto Email Generation is a project that utilizes FastAPI for the backend and a R
     cd backend
     python-lambda-local -f handler app/main.py ../test-events-lambda/test_event.json
     ```
-
-### Creating .env File
-
-- Setting up the environment variables
-    1. Navigate to the root directory of your project.
-    2. Create a new file named `.env` in the root directory.
-
-    Inside the `.env` file, add the following lines with your actual values for the environment variables:
-
-    ```dotenv
-    OPENAI_ORGANIZATION=your-organization-id
-    OPENAI_API_KEY=your-api-key
-    ```
-
-    Replace `your-organization-id` with your actual OpenAI organization ID and `your-api-key` with your actual OpenAI API key.
-
-    Make sure not to include any quotes around the values. The `.env` file is used to store sensitive information, so keep it private and do not share it publicly.
-
-- Further Configuration:
-    Adjust any other configurations as necessary in the respective files and directories.
 
 ## Deployment
 
