@@ -8,9 +8,7 @@ import yaml
 from app.config.settings import settings
 
 # Creating constant paths for logging
-DEFAULT_LOGGING_CONFIG_PATH = os.path.join(
-    settings.DEFAULT_LOGGING_CONFIG_DIR, "logging.yaml"
-)
+DEFAULT_LOGGING_CONFIG_PATH = os.path.join(settings.DEFAULT_LOGGING_CONFIG_DIR, "logging.yaml")
 
 
 def read_config(metadata_path: str) -> dict:

@@ -33,6 +33,4 @@ def generate_email(email_prompt: str) -> str:
             )
     except Exception as e:
         logger.error(e)
-        raise HTTPException(
-            status_code=status.HTTP_404_NOT_FOUND, detail="Out of service"
-        )
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Out of service")

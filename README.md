@@ -6,9 +6,9 @@ Auto Email Generation is a project that utilizes FastAPI for the backend and a R
 - [Directory Structure](#directory-structure)
 - [Setup and Usage](#setup-and-usage)
   - [Setting Up Environments](#setting-up-environments)
+  - [Creating .env File](#creating-env-file)
   - [Running Locally](#running-locally)
   - [Local Testing of Lambda Function](#local-testing-of-lambda-function)
-  - [Creating .env File](#creating-env-file)
 - [Deployment](#deployment)
   - [Docker Compose](#docker-compose)
   - [Build Lambda Docker Image](#build-lambda-docker-image)
@@ -42,7 +42,10 @@ Auto Email Generation is a project that utilizes FastAPI for the backend and a R
         ```
 
 2. **Python Environment (Backend):**
-    - It's recommended to use a virtual environment for Python to manage dependencies.
+
+   > It's recommended to use a virtual environment for Python to manage dependencies.
+
+   A. _Using `venv`_
     - Create a virtual environment in the `backend` directory:
       ```bash
       cd backend
@@ -61,6 +64,68 @@ Auto Email Generation is a project that utilizes FastAPI for the backend and a R
       ```bash
       pip install -r requirements.txt
       ```
+   ### OR
+
+   B. _Using `Conda`_
+
+      To set up a Conda environment using a requirements file, you can follow these steps:
+
+      1. Create a Conda Environment:
+         Open your terminal and run the following command to create a new Conda environment (replace `myenv` with the desired environment name):
+
+         ```bash
+         conda create --name email_gen
+         ```
+
+      2. Activate the Environment:
+         Activate the newly created environment using the following command:
+
+         ```bash
+         conda activate email_gen
+         ```
+
+      3. Install Packages from a Requirements File:
+         You can use the `conda install` command to install packages from a requirements file. If your requirements file is named `requirements.txt`, run the following command:
+
+         ```bash
+         conda install --file requirements.txt
+         ```
+
+         Replace `requirements.txt` with the actual path to your requirements file if it's located in a different directory.
+
+      4. Verify Installed Packages:
+         After installing the packages, you can use the `conda list` command to verify that the required packages have been installed:
+
+         ```bash
+         conda list
+         ```
+
+      5. Deactivate the Environment:
+         When you're done working in the environment, you can deactivate it using the following command:
+
+         ```bash
+         conda deactivate
+         ```
+
+### Creating .env File
+
+- Setting up the environment variables
+    1. Navigate to the root directory of your project.
+    2. Create a new file named `.env` in the root directory.
+
+    Inside the `.env` file, add the following lines with your actual values for the environment variables:
+
+    ```dotenv
+    OPENAI_ORGANIZATION=your-organization-id
+    OPENAI_API_KEY=your-api-key
+    ```
+
+    Replace `your-organization-id` with your actual OpenAI organization ID and `your-api-key` with your actual OpenAI API key.
+
+    Make sure not to include any quotes around the values. The `.env` file is used to store sensitive information, so keep it private and do not share it publicly.
+
+- Further Configuration:
+    Adjust any other configurations as necessary in the respective files and directories.
 
 ### Running Locally
 
@@ -86,26 +151,6 @@ Auto Email Generation is a project that utilizes FastAPI for the backend and a R
     cd backend
     python-lambda-local -f handler app/main.py ../test-events-lambda/test_event.json
     ```
-
-### Creating .env File
-
-- Setting up the environment variables
-    1. Navigate to the root directory of your project.
-    2. Create a new file named `.env` in the root directory.
-
-    Inside the `.env` file, add the following lines with your actual values for the environment variables:
-
-    ```dotenv
-    OPENAI_ORGANIZATION=your-organization-id
-    OPENAI_API_KEY=your-api-key
-    ```
-
-    Replace `your-organization-id` with your actual OpenAI organization ID and `your-api-key` with your actual OpenAI API key.
-
-    Make sure not to include any quotes around the values. The `.env` file is used to store sensitive information, so keep it private and do not share it publicly.
-
-- Further Configuration:
-    Adjust any other configurations as necessary in the respective files and directories.
 
 ## Deployment
 
