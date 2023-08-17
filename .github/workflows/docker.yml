@@ -30,7 +30,7 @@ jobs:
         uses: docker/build-push-action@v4
         with:
           builder: ${{ steps.buildx.outputs.name }}
-          context: frontend
+          context: ./frontend
           file: Dockerfile.dev
           push: true
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/email-generation-frontend:${{ github.sha }}
@@ -60,7 +60,7 @@ jobs:
         uses: docker/build-push-action@v4
         with:
           builder: ${{ steps.buildx.outputs.name }}
-          context: backend
+          context: ./backend
           file: Dockerfile.dev
           push: true
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/email-generation-backend:${{ github.sha }}
