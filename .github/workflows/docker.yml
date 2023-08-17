@@ -3,8 +3,8 @@ name: Docker Image
 on:
   pull_request:
     branches: [ "main" ]
-    # types:
-    #     - closed
+    types:
+        - closed
   workflow_dispatch:
   
 jobs:
