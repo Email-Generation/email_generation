@@ -31,7 +31,7 @@ jobs:
         run: npm run lint
 
       - name: Format with Prettier
-        run: npm run format -- --check
+        run: npm run format:check
 
   lint-format-backend:
     name: Lint and Format Backend
