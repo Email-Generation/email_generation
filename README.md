@@ -66,7 +66,7 @@ Auto Email Generation is a project that utilizes FastAPI for the backend and a R
       ```
    ### OR
 
-   B. _Using Conda_
+   B. _Using `Conda`_
 
       To set up a Conda environment using a requirements file, you can follow these steps:
 
