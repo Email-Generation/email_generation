@@ -3,21 +3,13 @@ name: Docker Image
 on:
   pull_request:
     branches: [ "main" ]
-    # types:
-    #     - closed
+    types: 
+      - closed
   workflow_dispatch:
-  workflow_run:
-    workflows: 
-      - "Build and Test App with Clean Install"
-      - "Test Email Generation backend"
-    types: [completed]
   
 jobs:
   build-and-push-frontend:
     runs-on: ubuntu-latest
-    if: |
-      ${{ github.event.workflow.name == 'Build and Test App with Clean Install' }} && \
-      ${{ github.event.workflow_run.conclusion == 'success'}}
         
     steps:  
       - name: Log in to Docker Hub
@@ -45,9 +37,6 @@ jobs:
 
   build-and-push-backend:
     runs-on: ubuntu-latest
-    if: |
-      ${{ github.event.workflow.name == 'Test Email Generation backend' }} && \
-      ${{ github.event.workflow_run.conclusion == 'success'}}
         
     steps:  
       - name: Log in to Docker Hub
@@ -75,9 +64,6 @@ jobs:
 
   build-and-push-aws-lambda:
     runs-on: ubuntu-latest
-    if: |
-      ${{ github.event.workflow.name == 'Test Email Generation backend' }} && \
-      ${{ github.event.workflow_run.conclusion == 'success'}}
     defaults:
       run:
         working-directory: backend
