@@ -3,11 +3,13 @@ name: Docker Image
 on:
   pull_request:
     branches: [ "main" ]
-    types:
-        - closed
+    # types:
+    #     - closed
   workflow_dispatch:
   workflow_run:
-    workflows: ["Build and Test App with Clean Install"]
+    workflows: 
+      - "Build and Test App with Clean Install"
+      - "Test Email Generation backend"
     types: [completed]
   
 jobs:
@@ -41,6 +43,7 @@ jobs:
 
   build-and-push-backend:
     runs-on: ubuntu-latest
+    needs: test-backend-endpoints
         
     steps:  
       - name: Log in to Docker Hub
