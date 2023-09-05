@@ -16,12 +16,8 @@ app = FastAPI(
     description=settings.description,
     version="1.0.0",
     # terms_of_service="URL to terms of service",
-    contact=[
-        {
-            "name": "Kayvan Shah",
-            # "url": "Contact URL 1",
-            "email": "kayvan.shah@usc.edu",
-        },
+    contact=[{"name": "Kayvan Shah",# "url": "Contact URL 1",
+            "email": "kayvan.shah@usc.edu", },
         {
             "name": "Bhumi Godiwala",
             # "url": "Contact URL 2",
