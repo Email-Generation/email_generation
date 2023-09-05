@@ -75,7 +75,7 @@ jobs:
 
       - name: Format with Black
         run: |
-          find . -name "*.py" -print0 | xargs -0 black --check --experimental-string-processing --line-length=120
+          find . -name "*.py" -print0 | xargs -0 black --experimental-string-processing --line-length=120
         continue-on-error: true
 
       - name: Check for modified files
