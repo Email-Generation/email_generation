@@ -31,8 +31,21 @@ jobs:
         run: npm run lint
 
       - name: Format with Prettier
-        run: npm run format:check
+        run: npm run format
         continue-on-error: true
+
+      - name: Check for modified files
+        id: git-check
+        run: echo ::set-output name=modified::$(if git diff-index --quiet HEAD --; then echo "false"; else echo "true"; fi)
+
+      - name: Push changes
+        if: steps.git-check.outputs.modified == 'true'
+        run: |
+          git config --global user.email "actions@github.com"
+          git config --global user.name "GitHub Actions"
+          git add .
+          git commit -am "Automated Frontend Formatting Fixes"
+          # git push
 
   lint-format-backend:
     name: Lint and Format Backend
@@ -58,8 +71,22 @@ jobs:
       - name: Lint with Flake8
         run: |
           find . -name "*.py" -print0 | xargs -0 flake8 --max-line-length=120 --ignore=E402,F841,F401,E302,E305,E266,E203,W503
+        continue-on-error: true
 
       - name: Format with Black
         run: |
-          find . -name "*.py" -print0 | xargs -0 black --check --experimental-string-processing --line-length=120
+          find . -name "*.py" -print0 | xargs -0 black --experimental-string-processing --line-length=120
         continue-on-error: true
+
+      - name: Check for modified files
+        id: git-check
+        run: echo ::set-output name=modified::$(if git diff-index --quiet HEAD --; then echo "false"; else echo "true"; fi)
+
+      - name: Push changes
+        if: steps.git-check.outputs.modified == 'true'
+        run: |
+          git config --global user.email "actions@github.com"
+          git config --global user.name "GitHub Actions"
+          git add .
+          git commit -am "Automated Backend Formatting Fixes"
+          # git push

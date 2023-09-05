@@ -11,10 +11,7 @@ export default function App() {
 
 	useAutosizeTextArea(textAreaRef.current, emailPrompt);
 
-	const handleChange = (evt) => {
-		const val = evt.target?.value;
-		setEmailPrompt(val);
-	};
+	const handleChange = (evt) => {const val = evt.target?.value;setEmailPrompt(val);};
 
 	const getEmailResponse = async (text) => {
 		var email_response = await fetch("http://127.0.0.1:8000/emails/", {
